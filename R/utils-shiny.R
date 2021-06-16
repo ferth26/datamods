@@ -103,18 +103,18 @@ make_success_alert <- function(data,
                                session = shiny::getDefaultReactiveDomain()) {
   if (identical(trigger_return, "button")) {
     success_message <- tagList(
-      tags$b(icon("check"), i18n("Data ready to be imported!")),
+      tags$b(icon("check"), i18n("¡Datos listos para ser importados!")),
       sprintf(
-        i18n("data has %s obs. of %s variables."),
+        i18n("los datos tienen %s obs. de %s variables."),
         nrow(data), ncol(data)
       ),
       extra
     )
   } else {
     success_message <- tagList(
-      tags$b(icon("check"), i18n("Data successfully imported!")),
+      tags$b(icon("check"), i18n("¡Datos importados correctamente!")),
       sprintf(
-        i18n("data has %s obs. of %s variables."),
+        i18n("los datos tienen %s obs. de %s variables."),
         nrow(data), ncol(data)
       ),
       extra
@@ -126,7 +126,7 @@ make_success_alert <- function(data,
       tags$br(),
       actionLink(
         inputId = session$ns("see_data"),
-        label = i18n("click to see data"),
+        label = i18n("haga clic para ver los datos"),
         icon = icon("hand-o-right")
       )
     )
@@ -140,7 +140,7 @@ insert_error <- function(selector = "import",
     selector = session$ns(selector),
     status = "danger",
     tags$b(icon("exclamation-triangle"), i18n("Ooops")),
-    i18n("Something went wrong...")
+    i18n("Algo salió mal...")
   )
 }
 
@@ -168,7 +168,7 @@ help_popup <- function(text) {
 button_import <- function(session = shiny::getDefaultReactiveDomain()) {
   actionButton(
     inputId = session$ns("confirm"),
-    label = i18n("Iportar datos"),
+    label = i18n("Importar datos"),
     icon = icon("arrow-circle-right"),
     width = "100%",
     disabled = "disabled",

@@ -43,7 +43,7 @@ import_globalenv_ui <- function(id,
 
   if (isTRUE(title)) {
     title <- tags$h4(
-      i18n("Import a dataset from an environment"),
+      i18n("Importar un dataset de un entorno"),
       class = "datamods-title"
     )
   }
@@ -54,19 +54,19 @@ import_globalenv_ui <- function(id,
     title,
     pickerInput(
       inputId = ns("data"),
-      label = i18n("Select a data.frame:"),
+      label = i18n("Seleccione un data.frame:"),
       choices = NULL,
-      options = list(title = i18n("List of data.frame...")),
+      options = list(title = i18n("Lista de data.frame...")),
       width = "100%"
     ),
     pickerInput(
       inputId = ns("env"),
-      label = i18n("Select an environment in which to search:"),
+      label = i18n("Seleccione un entorno en el que buscar:"),
       choices = choices,
       selected = selected,
       width = "100%",
       options = list(
-        "title" = i18n("Select environment"),
+        "title" = i18n("Seleccionar entorno"),
         "live-search" = TRUE,
         "size" = 10
       )
@@ -77,8 +77,8 @@ import_globalenv_ui <- function(id,
       alert(
         id = ns("import-result"),
         status = "info",
-        tags$b(i18n("No data selected!")),
-        i18n("Use a data.frame from your environment or from the environment of a package."),
+        tags$b(i18n("¡No se seleccionó ningún dato!")),
+        i18n("Use un data.frame de su entorno o del entorno de un paquete."),
         dismissible = TRUE
       )
     ),
@@ -204,7 +204,7 @@ import_globalenv_server <- function(id,
 
 
     observeEvent(input$see_data, {
-      show_data(temporary_rv$data, title = i18n("Imported data"))
+      show_data(temporary_rv$data, title = i18n("Datos importados"))
     })
 
     observeEvent(input$confirm, {
@@ -319,7 +319,7 @@ get_dimensions <- function(objs) {
       if (is.data.frame(tmp)) {
         sprintf("%d obs. of  %d variables", nrow(tmp), ncol(tmp))
       } else {
-        "Not a data.frame"
+        "No es un data.frame"
       }
     },
     name = objs,

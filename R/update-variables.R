@@ -76,7 +76,7 @@ update_variables_ui <- function(id, title = TRUE) {
     ),
     actionButton(
       inputId = ns("validate"),
-      label = i18n("Aplicar los cambios"),
+      label = i18n("Aplicar cambios"),
       icon = icon("arrow-circle-right"),
       width = "100%"
     )

@@ -108,7 +108,7 @@ import_ui <- function(id, from = c("env", "file", "copypaste", "googlesheets")) 
         ),
         radioGroupButtons(
           inputId = ns("from"),
-          label = i18n("How to import data?"),
+          label = i18n("¿Cómo importar datos?"),
           choiceValues = from,
           choiceNames = lapply(
             X = from,
