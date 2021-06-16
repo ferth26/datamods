@@ -23,7 +23,7 @@ import_copypaste_ui <- function(id, title = TRUE) {
 
   if (isTRUE(title)) {
     title <- tags$h4(
-      i18n("Copy & paste data"),
+      i18n("Copiar y pegar datos"),
       class = "datamods-title"
     )
   }
@@ -35,7 +35,7 @@ import_copypaste_ui <- function(id, title = TRUE) {
     tagAppendAttributes(
       textAreaInput(
         inputId = ns("data_pasted"),
-        label = i18n("Paste data here:"),
+        label = i18n("Pegue los datos aquí:"),
         height = "300px",
         width = "100%",
         resize = "none"
@@ -47,8 +47,8 @@ import_copypaste_ui <- function(id, title = TRUE) {
       alert(
         id = ns("import-result"),
         status = "info",
-        tags$b(i18n("Nothing pasted yet!")),
-        i18n("Please copy and paste some data in the dialog box above."),
+        tags$b(i18n("Todavía no hay datos pegados.")),
+        i18n("Copie y pegue algunos datos en el cuadro de diálogo de arriba."),
         dismissible = TRUE
       )
     ),

@@ -23,7 +23,7 @@ import_googlesheets_ui <- function(id, title = TRUE) {
 
   if (isTRUE(title)) {
     title <- tags$h4(
-      i18n("Import Google Spreadsheet"),
+      i18n("Importar hoja de cálculo de Google"),
       class = "datamods-title"
     )
   }
@@ -35,20 +35,20 @@ import_googlesheets_ui <- function(id, title = TRUE) {
     tags$div(
       class = "pull-right",
       help_popup(tagList(
-        i18n("You can either use:"),
+        i18n("Puede utilizar:"),
         tags$ul(
           tags$li(
-            i18n("A shareable link, in that case first sheet will be read")
+            i18n("Un enlace para compartir, en ese caso se leerá la primera hoja")
           ),
           tags$li(
-            i18n("The URL that appear in your browser, in that case the current sheet will be read")
+            i18n("La URL que aparece en su navegador, en ese caso se leerá la hoja actual")
           )
         )
       ))
     ),
     textInputIcon(
       inputId = ns("link"),
-      label = i18n("Enter a shareable link to a GoogleSheet:"),
+      label = i18n("Introduce un enlace compartible a una hoja de Google:"),
       icon = icon("link"),
       width = "100%"
     ),
@@ -57,8 +57,8 @@ import_googlesheets_ui <- function(id, title = TRUE) {
       alert(
         id = ns("import-result"),
         status = "info",
-        tags$b(i18n("Nothing pasted yet!")),
-        i18n("Please paste a valid GoogleSheet link in the dialog box above."),
+        tags$b(i18n("Todavía no hay datos pegados.")),
+        i18n("Pega un enlace válido de GoogleSheet en el cuadro de diálogo anterior."),
         dismissible = TRUE
       )
     ),
@@ -142,7 +142,7 @@ import_googlesheets_server <- function(id,
     }, ignoreInit = TRUE)
 
     observeEvent(input$see_data, {
-      show_data(temporary_rv$data, title = i18n("Imported data"))
+      show_data(temporary_rv$data, title = i18n("Datos importados"))
     })
 
     observeEvent(input$confirm, {
@@ -183,7 +183,7 @@ get_id <- function(x) {
     x <- regmatches(x, gregexpr("id=[[:alnum:]_-]+", x))
     gsub("^id=", "", x[[1]])
   } else {
-    stop("Failed to retrieve Googlesheet ID")
+    stop("No se ha podido recuperar el ID de la hoja de cálculo")
   }
 }
 
