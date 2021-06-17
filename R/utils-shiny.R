@@ -168,11 +168,11 @@ help_popup <- function(text) {
 button_import <- function(session = shiny::getDefaultReactiveDomain()) {
   actionButton(
     inputId = session$ns("confirm"),
-    label = i18n("Import data"),
+    label = i18n("Iportar datos"),
     icon = icon("arrow-circle-right"),
     width = "100%",
     disabled = "disabled",
     class = "btn-primary",
-    `aria-label` = i18n("Import data")
+    `aria-label` = i18n("Importar datos")
   )
 }
