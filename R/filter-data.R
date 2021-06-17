@@ -33,7 +33,7 @@ filter_data_ui <- function(id,
       )
     ),
     if (isTRUE(show_nrow)) {
-      tags$span(i18n("Number of rows:"), uiOutput(outputId = ns("nrow"), inline = TRUE))
+      tags$span(i18n("Número de filas:"), uiOutput(outputId = ns("nrow"), inline = TRUE))
     },
     uiOutput(outputId = ns("placeholder_filters"), style = max_height)
   )
