@@ -133,24 +133,24 @@ import_ui <- function(id, from = c("env", "file", "copypaste", "googlesheets")) 
       type = "tabs",
       id = ns("tabs-mode"),
       tabPanel(
-        title = i18n("Import"),
+        title = i18n("Importar"),
         value = "import",
         importTab
       ),
       tabPanel(
-        title = i18n("View"),
+        title = i18n("Vista"),
         value = "view",
         tags$br(),
         DTOutput(outputId = ns("view"))
       ),
       tabPanel(
-        title = i18n("Update"),
+        title = i18n("Actualizar"),
         value = "update",
         tags$br(),
         update_variables_ui(id = ns("update"), title = NULL)
       ),
       tabPanel(
-        title = i18n("Validate"),
+        title = i18n("Validar"),
         value = "validate",
         tags$br(),
         validation_ui(
@@ -379,7 +379,7 @@ import_server <- function(id,
 #' @export
 #' @rdname import-modal
 #' @importFrom shiny modalDialog showModal
-import_modal <- function(id, from, title = "Import data", size = "l") {
+import_modal <- function(id, from, title = "Importar datos", size = "l") {
   showModal(modalDialog(
     title = tagList(
       tags$button(

@@ -20,7 +20,7 @@ update_variables_ui <- function(id, title = TRUE) {
   ns <- NS(id)
   if (isTRUE(title)) {
     title <- tags$h4(
-      i18n("Update & select variables"),
+      i18n("Actualizar y seleccionar variables"),
       class = "datamods-title"
     )
   }
@@ -48,13 +48,13 @@ update_variables_ui <- function(id, title = TRUE) {
           ),
           textInputIcon(
             inputId = ns("origin"),
-            label = i18n("Date to use as origin to convert date/datetime:"),
+            label = i18n("Fecha para usar como origen para convertir fecha / fecha y hora:"),
             value = "1970-01-01",
             icon = icon("calendar")
           ),
           textInputIcon(
             inputId = ns("dec"),
-            label = i18n("Decimal separator:"),
+            label = i18n("Separador decimal:"),
             value = ".",
             icon = list("0.00")
           )
@@ -70,13 +70,13 @@ update_variables_ui <- function(id, title = TRUE) {
         id = ns("update-result"),
         status = "info",
         icon("info"),
-        i18n(paste("Select, rename and convert variables in table above,",
-                   "then apply changes by clicking button below."))
+        i18n(paste("Seleccione, cambie el nombre y convierta las variables en la tabla anterior,",
+                   "luego aplique los cambios haciendo clic en el botón de abajo"))
       )
     ),
     actionButton(
       inputId = ns("validate"),
-      label = i18n("Apply changes"),
+      label = i18n("Aplicar los cambios"),
       icon = icon("arrow-circle-right"),
       width = "100%"
     )
@@ -114,12 +114,12 @@ update_variables_server <- function(id, data, height = NULL) {
       output$data_info <- renderUI({
         shiny::req(data_r())
         data <- data_r()
-        sprintf(i18n("Data has %s observations and %s variables."), nrow(data), ncol(data))
+        sprintf(i18n("Los datos tienen %s observaciones y %s variables."), nrow(data), ncol(data))
       })
 
       variables_r <- reactive({
         shiny::validate(
-          shiny::need(data(), i18n("No data to display."))
+          shiny::need(data(), i18n("No hay información para mostrar."))
         )
         data <- data_r()
         updated_data$x <- NULL
@@ -171,7 +171,7 @@ update_variables_server <- function(id, data, height = NULL) {
           insert_alert(
             selector = ns("update"),
             status = "success",
-            tags$b(icon("check"), i18n("Data successfully updated!"))
+            tags$b(icon("check"), i18n("¡Datos actualizados con éxito!"))
           )
           updated_data$x <- data
         }

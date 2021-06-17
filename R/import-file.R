@@ -24,7 +24,7 @@ import_file_ui <- function(id, title = TRUE) {
 
   if (isTRUE(title)) {
     title <- tags$h4(
-      i18n("Import a file"),
+      i18n("Importar un archivo"),
       class = "datamods-title"
     )
   }
@@ -38,9 +38,9 @@ import_file_ui <- function(id, title = TRUE) {
       tags$div(
         fileInput(
           inputId = ns("file"),
-          label = i18n("Upload a file:"),
-          buttonLabel = i18n("Browse..."),
-          placeholder = i18n("No file selected"),
+          label = i18n("Cargar un archivo:"),
+          buttonLabel = i18n("Explorar"),
+          placeholder = i18n("Seleccione un archivo"),
           accept = c(".csv", ".txt", ".xls", ".xlsx", ".rds", ".fst", ".sas7bdat", ".sav"),
           width = "100%"
         )
@@ -57,20 +57,20 @@ import_file_ui <- function(id, title = TRUE) {
           ),
           numericInputIcon(
             inputId = ns("skip_rows"),
-            label = i18n("Number of rows to skip before reading data:"),
+            label = i18n("Número de filas que se deben omitir antes de leer los datos:"),
             value = 0,
             min = 0,
             icon = list("n =")
           ),
           textInputIcon(
             inputId = ns("dec"),
-            label = i18n("Decimal separator:"),
+            label = i18n("Separador decimal:"),
             value = ".",
             icon = list("0.00")
           ),
           textInputIcon(
             inputId = ns("encoding"),
-            label = i18n("Encoding:"),
+            label = i18n("Codificación:"),
             value = "UTF-8",
             icon = icon("font")
           )
@@ -82,7 +82,7 @@ import_file_ui <- function(id, title = TRUE) {
       id = ns("sheet-container"),
       pickerInput(
         inputId = ns("sheet"),
-        label = i18n("Select sheet to import:"),
+        label = i18n("Seleccione la hoja para importar:"),
         choices = NULL,
         width = "100%"
       )
@@ -92,8 +92,8 @@ import_file_ui <- function(id, title = TRUE) {
       alert(
         id = ns("import-result"),
         status = "info",
-        tags$b(i18n("No file selected:")),
-        i18n("You can import .rds, .txt, .csv, .xls, .xlsx, .sas7bdat, .sav, ..."),
+        tags$b(i18n("Ningún archivo seleccionado:")),
+        i18n("Puede importar .rds, .txt, .csv, .xls, .xlsx, .sas7bdat, .sav, ..."),
         dismissible = TRUE
       )
     ),
@@ -217,7 +217,7 @@ import_file_server <- function(id,
             imported,
             trigger_return = trigger_return,
             btn_show_data = btn_show_data,
-            extra = i18n("First five rows are shown below:")
+            extra = i18n("Las primeras cinco filas se muestran a continuación:")
           )
         )
         temporary_rv$status <- "success"
@@ -228,7 +228,7 @@ import_file_server <- function(id,
     }, ignoreInit = TRUE)
 
     observeEvent(input$see_data, {
-      show_data(temporary_rv$data, title = i18n("Imported data"))
+      show_data(temporary_rv$data, title = i18n("Datos importados"))
     })
 
     output$table <- renderTable({
