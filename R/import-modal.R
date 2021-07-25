@@ -88,48 +88,49 @@ import_ui <- function(id, from = c("env", "file", "copypaste", "googlesheets")) 
       "copypaste" = import_copypaste_ui(id = ns("copypaste")),
       "googlesheets" = import_googlesheets_ui(id = ns("googlesheets"))
     )
-  } else {
-    tabsetPanelArgs <- dropNulls(list(
-      env, file, copypaste, googlesheets,
-      id = ns("tabs-import"),
-      type = "hidden"
-    ))
-    importTab <- do.call(
-      what = tabsetPanel,
-      args = tabsetPanelArgs
-    )
-    importTab <- fluidRow(
-      column(
-        width = 3,
-        tags$br(),
-        tags$style(
-          HTML(sprintf("#%s>.btn-group-vertical {width: 100%%;}", ns("from"))),
-          HTML(sprintf(".btn-group-vertical>.btn-group>.btn {text-align: left;}"))
-        ),
-        radioGroupButtons(
-          inputId = ns("from"),
-          label = i18n("¿Cómo importar datos?"),
-          choiceValues = from,
-          choiceNames = lapply(
-            X = from,
-            FUN = function(x) {
-              tagList(iconsImport[[x]], labsImport[[x]])
-            }
-          ),
-          direction = "vertical",
-          width = "100%"
-        )
-      ),
-      column(
-        width = 9, importTab
-      )
-    )
-  }
+  } 
+  # else {
+  #   tabsetPanelArgs <- dropNulls(list(
+  #     env, file, copypaste, googlesheets,
+  #     id = ns("tabs-import"),
+  #     type = "hidden"
+  #   ))
+  #   importTab <- do.call(
+  #     what = tabsetPanel,
+  #     args = tabsetPanelArgs
+  #   )
+  #   importTab <- fluidRow(
+  #     column(
+  #       width = 3,
+  #       tags$br(),
+  #       tags$style(
+  #         HTML(sprintf("#%s>.btn-group-vertical {width: 100%%;}", ns("from"))),
+  #         HTML(sprintf(".btn-group-vertical>.btn-group>.btn {text-align: left;}"))
+  #       ),
+  #       radioGroupButtons(
+  #         inputId = ns("from"),
+  #         label = i18n("¿Cómo importar datos?"),
+  #         choiceValues = from,
+  #         choiceNames = lapply(
+  #           X = from,
+  #           FUN = function(x) {
+  #             tagList(iconsImport[[x]], labsImport[[x]])
+  #           }
+  #         ),
+  #         direction = "vertical",
+  #         width = "100%"
+  #       )
+  #     ),
+  #     column(
+  #       width = 9, importTab
+  #     )
+  #   )
+  # }
 
   tags$div(
     class = "datamods-imports",
     html_dependency_datamods(),
-    tabsetPanel(
+    bs4Dash::tabsetPanel(
       type = "tabs",
       id = ns("tabs-mode"),
       tabPanel(
@@ -301,10 +302,13 @@ import_server <- function(id,
           rownames = FALSE,
           selection = "none",
           class = "display dt-responsive cell-border compact",
-          style = "bootstrap",
+          style = "auto",
           width = "100%",
           container = container,
           options = list(
+            language = list(
+              url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json'
+            ),
             scrollX = TRUE,
             searching = FALSE,
             lengthChange = FALSE,
