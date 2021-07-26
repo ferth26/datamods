@@ -24,108 +24,75 @@
 #'
 #' @example examples/modal.R
 #'
-import_ui <- function(id, from = c("env", "file", "copypaste", "googlesheets")) {
+import_ui <- function(id, from = "file") {
   ns <- NS(id)
   from <- match.arg(from, several.ok = TRUE)
 
-  env <- if ("env" %in% from) {
-    tabPanel(
-      title = "env",
-      tags$br(),
-      import_globalenv_ui(id = ns("env"), title = NULL),
-      icon = icon("code")
-    )
-  }
+  # env <- if ("env" %in% from) {
+  #   tabPanel(
+  #     title = "env",
+  #     tags$br(),
+  #     import_globalenv_ui(id = ns("env"), title = NULL),
+  #     icon = icon("code")
+  #   )
+  # }
 
-  file <- if ("file" %in% from) {
-    tabPanel(
-      title = "file",
-      tags$br(),
-      import_file_ui(id = ns("file"), title = NULL),
-      icon = icon("file-import")
-    )
-  }
+  # file <- if ("file" %in% from) {
+  #   tabPanel(
+  #     title = "file",
+  #     tags$br(),
+  #     import_file_ui(id = ns("file"), title = NULL),
+  #     icon = icon("file-import")
+  #   )
+  # }
 
-  copypaste <- if ("copypaste" %in% from) {
-    tabPanel(
-      title = "copypaste",
-      tags$br(),
-      import_copypaste_ui(id = ns("copypaste"), title = NULL),
-      icon = icon("copy")
-    )
-  }
-
-  googlesheets <- if ("googlesheets" %in% from) {
-    tabPanel(
-      title = "googlesheets",
-      tags$br(),
-      import_googlesheets_ui(id = ns("googlesheets"), title = NULL),
-      icon = icon("cloud-download")
-    )
-  }
+  # copypaste <- if ("copypaste" %in% from) {
+  #   tabPanel(
+  #     title = "copypaste",
+  #     tags$br(),
+  #     import_copypaste_ui(id = ns("copypaste"), title = NULL),
+  #     icon = icon("copy")
+  #   )
+  # }
+  # 
+  # googlesheets <- if ("googlesheets" %in% from) {
+  #   tabPanel(
+  #     title = "googlesheets",
+  #     tags$br(),
+  #     import_googlesheets_ui(id = ns("googlesheets"), title = NULL),
+  #     icon = icon("cloud-download")
+  #   )
+  # }
 
   #database <- if("database" %in% from) tabPanel("Database", import_database_ui(ns("database")))
 
-  labsImport <- list(
-    "env" = i18n("Environment"),
-    "file" = i18n("External file"),
-    "copypaste" = i18n("Copy / Paste"),
-    "googlesheets" = i18n("Googlesheets")
-  )
-  iconsImport <- list(
-    "env" = icon("code"),
-    "file" = icon("file-import"),
-    "copypaste" = icon("copy"),
-    "googlesheets" = icon("cloud-download")
-  )
+  # labsImport <- list(
+  #   "env" = i18n("Environment"),
+  #   "file" = i18n("External file"),
+  #   "copypaste" = i18n("Copy / Paste"),
+  #   "googlesheets" = i18n("Googlesheets")
+  # )
+  # iconsImport <- list(
+  #   "env" = icon("code"),
+  #   "file" = icon("file-import"),
+  #   "copypaste" = icon("copy"),
+  #   "googlesheets" = icon("cloud-download")
+  # )
 
 
-  if (identical(length(from), 1L)) {
-    importTab <- switch(
-      from,
-      "env" = import_globalenv_ui(id = ns("env")),
-      "file" = import_file_ui(id = ns("file")),
-      "copypaste" = import_copypaste_ui(id = ns("copypaste")),
-      "googlesheets" = import_googlesheets_ui(id = ns("googlesheets"))
-    )
-  } 
-  # else {
-  #   tabsetPanelArgs <- dropNulls(list(
-  #     env, file, copypaste, googlesheets,
-  #     id = ns("tabs-import"),
-  #     type = "hidden"
-  #   ))
-  #   importTab <- do.call(
-  #     what = tabsetPanel,
-  #     args = tabsetPanelArgs
-  #   )
-  #   importTab <- fluidRow(
-  #     column(
-  #       width = 3,
-  #       tags$br(),
-  #       tags$style(
-  #         HTML(sprintf("#%s>.btn-group-vertical {width: 100%%;}", ns("from"))),
-  #         HTML(sprintf(".btn-group-vertical>.btn-group>.btn {text-align: left;}"))
-  #       ),
-  #       radioGroupButtons(
-  #         inputId = ns("from"),
-  #         label = i18n("¿Cómo importar datos?"),
-  #         choiceValues = from,
-  #         choiceNames = lapply(
-  #           X = from,
-  #           FUN = function(x) {
-  #             tagList(iconsImport[[x]], labsImport[[x]])
-  #           }
-  #         ),
-  #         direction = "vertical",
-  #         width = "100%"
-  #       )
-  #     ),
-  #     column(
-  #       width = 9, importTab
-  #     )
+  # if (identical(length(from), 1L)) {
+  #   importTab <- switch(
+  #     from,
+  #     "env" = import_globalenv_ui(id = ns("env")),
+  #     "file" = import_file_ui(id = ns("file")),
+  #     "copypaste" = import_copypaste_ui(id = ns("copypaste")),
+  #     "googlesheets" = import_googlesheets_ui(id = ns("googlesheets"))
   #   )
   # }
+  
+  if (identical(length(from), 1L)) {
+    importTab <- import_file_ui(id = ns("file"))
+  }
 
   tags$div(
     class = "datamods-imports",
@@ -383,7 +350,7 @@ import_server <- function(id,
 #' @export
 #' @rdname import-modal
 #' @importFrom shiny modalDialog showModal
-import_modal <- function(id, from, title = "Importar datos", size = "l") {
+import_modal <- function(id, from = "file", title = "Importar datos", size = "l") {
   showModal(modalDialog(
     title = tagList(
       tags$button(

@@ -53,11 +53,11 @@ import_file_ui <- function(id, title = TRUE) {
             label = NULL,
             icon = icon("gear"),
             class = "btn-block",
-            style = "margin-top: 25px;"
+            style = "margin-top: 31px;"
           ),
           numericInputIcon(
             inputId = ns("skip_rows"),
-            label = i18n("Número de filas que se deben omitir antes de leer los datos:"),
+            label = i18n("Número de filas a omitir antes de leer los datos:"),
             value = 0,
             min = 0,
             icon = list("n =")
@@ -238,7 +238,13 @@ import_file_server <- function(id,
       classes <- sprintf("<span style='font-style: italic; font-weight: normal; font-size: small;'>%s</span>", classes)
       names(data) <- paste(names(data), classes, sep = "<br>")
       data
-    }, striped = TRUE, bordered = TRUE, sanitize.colnames.function = identity, spacing = "xs")
+    }, 
+    striped = TRUE, 
+    bordered = TRUE, 
+    sanitize.colnames.function = identity, 
+    spacing = "xs", 
+    digits = 10
+    )
 
     observeEvent(input$confirm, {
       imported_rv$data <- temporary_rv$data

@@ -296,7 +296,7 @@ summary_vars <- function(data) {
 #' @noRd
 #' @importFrom htmltools doRenderTags
 #' @importFrom shiny textInput
-set_input_text <- function(data, variable, id = "variable", width = "100%") {
+set_input_text <- function(data, variable, id = "variable", width = "75%") {
   values <- data[[variable]]
   text_input <- mapply(
     FUN = function(inputId, value) {
@@ -421,13 +421,13 @@ update_variables_datatable <- function(data, height = NULL) {
   dt <- datatable(
     data = data,
     rownames = TRUE,
-    colnames = c("Name", "Class", "Class to set",
-                 "Missing values",
-                 "Complete obs.",
-                 "Unique values"),
+    colnames = c("Nombre", "Clase", "Nueva clase",
+                 "Valores faltantes",
+                 "Obs. completas",
+                 "Valores únicos"),
     selection = "none",
     escape = FALSE,
-    style = "bootstrap",
+    style = "auto",
     class = "display dt-responsive",
     fillContainer = FALSE,
     options = list(
@@ -442,18 +442,18 @@ update_variables_datatable <- function(data, height = NULL) {
       drawCallback = JS("function() {Shiny.bindAll(this.api().table().node());}"),
       columnDefs = list(
         list(width = "5%", targets = 0),
-        list(width = "25%", targets = 1),
+        list(width = "20%", targets = 1),
         list(width = "20%", targets = 2),
-        list(width = "20%", targets = 3),
+        list(width = "25%", targets = 3),
         list(width = "10%", targets = 4),
         list(width = "10%", targets = 5),
         list(width = "10%", targets = 6)
       ),
       columns = list(
         list(width = "5%"),
+        list(width = "20%"),
+        list(width = "20%"),
         list(width = "25%"),
-        list(width = "20%"),
-        list(width = "20%"),
         list(width = "10%"),
         list(width = "10%"),
         list(width = "10%")
