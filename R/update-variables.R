@@ -38,7 +38,7 @@ update_variables_ui <- function(id, title = TRUE) {
             inputId = ns("settings"),
             label = NULL,
             icon = icon("gear"),
-            class = "pull-right"
+            class = "float-right"
           ),
           textInputIcon(
             inputId = ns("format"),
@@ -432,7 +432,7 @@ update_variables_datatable <- function(data, height = NULL) {
     fillContainer = FALSE,
     options = list(
       ordering = FALSE,
-      scrollY = height,
+      scrollY = FALSE,
       scrollX = FALSE,
       lengthChange = FALSE,
       paging = FALSE,

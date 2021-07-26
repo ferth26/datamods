@@ -294,7 +294,7 @@ import_modal <- function(id, from = "file", title = "Importar datos", size = "l"
     title = tagList(
       tags$button(
         icon("close"),
-        class = "btn btn-default pull-right",
+        class = "btn btn-default float-right",
         style = "border: 0 none;",
         `data-dismiss` = "modal",
         `aria-label` = "Close"
