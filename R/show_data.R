@@ -40,12 +40,15 @@ show_data <- function(data,
     data = data,
     rownames = FALSE,
     selection = "none",
-    class = "display dt-responsive cell-border compact",
-    style = "bootstrap",
+    class = "cell-border compact strip",
+    style = "auto",
     width = "100%",
     container = container,
     options = c(list(
-      scrollX = TRUE
+      scrollX = TRUE,
+      language = list(
+        url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json'
+      )
     ), options)
   )
   if (identical(type, "popup")) {
@@ -74,7 +77,7 @@ show_data <- function(data,
       title = tagList(
         tags$button(
           icon("close"),
-          class = "btn btn-default pull-right",
+          class = "btn btn-default float-right",
           style = "border: 0 none;",
           `data-dismiss` = "modal",
           `aria-label` = "Close"
