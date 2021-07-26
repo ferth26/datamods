@@ -27,68 +27,6 @@
 import_ui <- function(id, from = "file") {
   ns <- NS(id)
   from <- match.arg(from, several.ok = TRUE)
-
-  # env <- if ("env" %in% from) {
-  #   tabPanel(
-  #     title = "env",
-  #     tags$br(),
-  #     import_globalenv_ui(id = ns("env"), title = NULL),
-  #     icon = icon("code")
-  #   )
-  # }
-
-  # file <- if ("file" %in% from) {
-  #   tabPanel(
-  #     title = "file",
-  #     tags$br(),
-  #     import_file_ui(id = ns("file"), title = NULL),
-  #     icon = icon("file-import")
-  #   )
-  # }
-
-  # copypaste <- if ("copypaste" %in% from) {
-  #   tabPanel(
-  #     title = "copypaste",
-  #     tags$br(),
-  #     import_copypaste_ui(id = ns("copypaste"), title = NULL),
-  #     icon = icon("copy")
-  #   )
-  # }
-  # 
-  # googlesheets <- if ("googlesheets" %in% from) {
-  #   tabPanel(
-  #     title = "googlesheets",
-  #     tags$br(),
-  #     import_googlesheets_ui(id = ns("googlesheets"), title = NULL),
-  #     icon = icon("cloud-download")
-  #   )
-  # }
-
-  #database <- if("database" %in% from) tabPanel("Database", import_database_ui(ns("database")))
-
-  # labsImport <- list(
-  #   "env" = i18n("Environment"),
-  #   "file" = i18n("External file"),
-  #   "copypaste" = i18n("Copy / Paste"),
-  #   "googlesheets" = i18n("Googlesheets")
-  # )
-  # iconsImport <- list(
-  #   "env" = icon("code"),
-  #   "file" = icon("file-import"),
-  #   "copypaste" = icon("copy"),
-  #   "googlesheets" = icon("cloud-download")
-  # )
-
-
-  # if (identical(length(from), 1L)) {
-  #   importTab <- switch(
-  #     from,
-  #     "env" = import_globalenv_ui(id = ns("env")),
-  #     "file" = import_file_ui(id = ns("file")),
-  #     "copypaste" = import_copypaste_ui(id = ns("copypaste")),
-  #     "googlesheets" = import_googlesheets_ui(id = ns("googlesheets"))
-  #   )
-  # }
   
   if (identical(length(from), 1L)) {
     importTab <- import_file_ui(id = ns("file"))
@@ -268,7 +206,7 @@ import_server <- function(id,
           data = data,
           rownames = FALSE,
           selection = "none",
-          class = "display dt-responsive cell-border compact",
+          class = "compact cell-border hover",
           style = "auto",
           width = "100%",
           container = container,
@@ -279,6 +217,7 @@ import_server <- function(id,
             scrollX = TRUE,
             searching = FALSE,
             lengthChange = FALSE,
+            ordering = FALSE,
             pageLength = min(c(10, nrow(data_rv$data))),
             columnDefs = list(
               list(targets = "_all", className = "datamods-dt-nowrap")

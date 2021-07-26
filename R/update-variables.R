@@ -48,7 +48,7 @@ update_variables_ui <- function(id, title = TRUE) {
           ),
           textInputIcon(
             inputId = ns("origin"),
-            label = i18n("Fecha para usar como origen para convertir fecha / fecha y hora:"),
+            label = i18n("Fecha para usar como origen para convertir fecha/fecha y hora:"),
             value = "1970-01-01",
             icon = icon("calendar")
           ),
@@ -296,7 +296,7 @@ summary_vars <- function(data) {
 #' @noRd
 #' @importFrom htmltools doRenderTags
 #' @importFrom shiny textInput
-set_input_text <- function(data, variable, id = "variable", width = "75%") {
+set_input_text <- function(data, variable, id = "variable", width = "100%") {
   values <- data[[variable]]
   text_input <- mapply(
     FUN = function(inputId, value) {
@@ -428,9 +428,10 @@ update_variables_datatable <- function(data, height = NULL) {
     selection = "none",
     escape = FALSE,
     style = "auto",
-    class = "display dt-responsive",
+    class = "compact row-border dt-responsive",
     fillContainer = FALSE,
     options = list(
+      ordering = FALSE,
       scrollY = height,
       scrollX = FALSE,
       lengthChange = FALSE,
