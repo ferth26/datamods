@@ -28,6 +28,59 @@ import_file_ui <- function(id, title = TRUE) {
       class = "datamods-title"
     )
   }
+  
+  ## Temporary solution 
+  numericInputIconC <- function(inputId,
+                                label,
+                                value,
+                                min = NULL,
+                                max = NULL,
+                                step = NULL,
+                                icon = NULL,
+                                size = NULL,
+                                help_text = NULL,
+                                width = NULL) {
+    
+    item <- shinyWidgets::numericInputIcon(
+      inputId = inputId,
+      label = label,
+      value = value,
+      min = min,
+      max = max,
+      step = step,
+      icon = icon,
+      size = size,
+      help_text = help_text,
+      width = width
+    )
+    
+    item$children[[2]]$children[[1]]$attribs$class <- "input-group-text"
+    
+    item
+  }
+  
+  textInputIconC <- function(
+    inputId,
+    label,
+    value = "",
+    placeholder = NULL,
+    icon_ = NULL,
+    size = NULL,
+    width = NULL
+  ) {
+    item <- shinyWidgets::textInputIcon(
+      inputId = inputId,
+      label = label,
+      value = value,
+      placeholder = placeholder,
+      icon = icon_,
+      size = size,
+      width = width
+    )
+    
+    item$children[[2]]$children[[1]]$attribs$class <- "input-group-text"
+    item
+  }
 
   tags$div(
     class = "datamods-import",
@@ -53,7 +106,7 @@ import_file_ui <- function(id, title = TRUE) {
             label = NULL,
             icon = icon("gear"),
             class = "btn-block",
-            style = "margin-top: 31px;"
+            style = "margin-top: 25px;"
           ),
           numericInputIcon(
             inputId = ns("skip_rows"),
@@ -62,13 +115,13 @@ import_file_ui <- function(id, title = TRUE) {
             min = 0,
             icon = list("n =")
           ),
-          textInputIcon(
+          textInputIconC(
             inputId = ns("dec"),
             label = i18n("Separador decimal:"),
             value = ".",
             icon = list("0.00")
           ),
-          textInputIcon(
+          textInputIconC(
             inputId = ns("encoding"),
             label = i18n("Codificación:"),
             value = "UTF-8",
