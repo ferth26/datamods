@@ -30,16 +30,18 @@ import_file_ui <- function(id, title = TRUE) {
   }
   
   ## Temporary solution 
-  numericInputIconC <- function(inputId,
-                                label,
-                                value,
-                                min = NULL,
-                                max = NULL,
-                                step = NULL,
-                                icon = NULL,
-                                size = NULL,
-                                help_text = NULL,
-                                width = NULL) {
+  numericInputIconC <- function(
+    inputId,
+    label,
+    value,
+    min = NULL,
+    max = NULL,
+    step = NULL,
+    icon = NULL,
+    size = NULL,
+    help_text = NULL,
+    width = NULL
+  ) {
     
     item <- shinyWidgets::numericInputIcon(
       inputId = inputId,
@@ -108,7 +110,7 @@ import_file_ui <- function(id, title = TRUE) {
             class = "btn-block",
             style = "margin-top: 25px;"
           ),
-          numericInputIcon(
+          numericInputIconC(
             inputId = ns("skip_rows"),
             label = i18n("Número de filas a omitir antes de leer los datos:"),
             value = 0,
